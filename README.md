@@ -24,6 +24,14 @@ $ brew install eccodes
 ```
 
 ## Usage 
+
+### Local
+
+Run the server using 
+```
+python app/main.py
+```
+
 Using httpie [https://httpie.org/] submit requests as follows: 
 
 Magnetic field values:
