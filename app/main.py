@@ -24,7 +24,7 @@ class GeomagField(Resource):
         "day": fields.Integer(required=True, validate=lambda d: 1 <= d < 31)
     }
 
-    @use_kwargs(schema_args)
+    @use_kwargs(schema_args, location="query")
     def get(self, lat, lng, altitude_km, yr, mth, day):
         result = calculate_field(lat, lng, altitude_km, datetime.date(yr, mth, day))
         return result
