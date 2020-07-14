@@ -2,6 +2,7 @@ import datetime
 import json
 from collections import defaultdict
 
+import geojsoncontour
 import numpy as np
 
 from geomag import field
@@ -37,18 +38,24 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     z = np.array(lookup)
     cs = plt.contour(
-        x, y,
-        np.transpose(z),
+        y, x, z,
         colors = 'black', 
-        linestyles = 'dashed'
+        linestyles = 'dashed', 
+        levels=range(-180, 180, 1)
     )
     plt.clabel(cs, fmt = '%.0f', inline = True)
     plt.savefig('plot.png')
 
-    # filename = "{}-0000-wind-gfs-1.0.json".format(date.day)
+    geojson = geojsoncontour.contour_to_geojson(
+        contour=cs,
+        ndigits=3,
+        unit='DD'
+    )
 
-    # with open(filename, "w") as out:
-    #     json.dump(to_dump, out)
+    filename = "{}-0000-wind-gfs-1.0.json".format(date.day)
+
+    with open(filename, "w") as out:
+        out.write(geojson)
 
     # print("{} written".format(filename))
 

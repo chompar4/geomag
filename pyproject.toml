@@ -16,6 +16,8 @@ flask_restful = "^0.3.8"
 webargs = "^6.1.0"
 gunicorn = "^20.0.4"
 flask_cors = "^3.0.8"
+matplotlib = "^3.2.2"
+geojsoncontour = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
