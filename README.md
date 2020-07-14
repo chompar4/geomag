@@ -1,4 +1,4 @@
-# geomag
+# geomag-api
 world magnetic model api for 2020 onwards.
 
 for an interactive visualisation of values see the associated iso-contour magnetic field map: []
