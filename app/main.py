@@ -2,6 +2,7 @@ import datetime
 from json import dumps
 
 from flask import Flask, request
+from flask_cors import CORS
 from flask_restful import Api, Resource, abort
 from webargs import fields, validate
 from webargs.flaskparser import parser, use_kwargs
@@ -9,6 +10,7 @@ from webargs.flaskparser import parser, use_kwargs
 from geomag import field as calculate_field
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 class GeomagField(Resource):
