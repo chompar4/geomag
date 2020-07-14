@@ -46,6 +46,11 @@ Iso-contour geojson (TODO):
 http GET :5002/iso-json altitude_km=0 day=14 mth=7 yr=2020
 ```
 
+### Live
+
+```
+http GET https://geomag-api.herokuapp.com/ lat=-37.49 lng=144.58 altitude_km=0 day=14 mth=7 yr=2020
+```
 ## Deployment 
 
 Use the poetry buildpack to deploy to heroku 
