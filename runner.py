@@ -29,7 +29,7 @@ def create_file(day, mth, yr, bds):
 
     lookup = [
         [
-            field(dlat, dlng, date=date)["D"]
+            abs(field(dlat, dlng, date=date)["D"]) # need to abs() to avoid singularity at +-180
             for dlng in y
         ]
         for dlat in x
@@ -38,26 +38,20 @@ def create_file(day, mth, yr, bds):
     z = np.array(lookup)
     cs = plt.contour(
         y, x, z,
-        levels=range(-180, 180, 2)
+        levels=np.linspace(start=0, stop=180, num=180)
     )
     plt.savefig('plot.png')
 
+    filename = "{}-{}-{}.json".format(day, mth, yr)
     geojson = geojsoncontour.contour_to_geojson(
         contour=cs,
         ndigits=3,
-        unit='DD'
+        unit='DD',
+        geojson_filepath=filename
     )
 
-    filename = "{}-0000-wind-gfs-1.0.json".format(date.day)
+    print("{} written".format(filename))
 
-    with open(filename, "w") as out:
-        out.write(geojson)
-
-    # print("{} written".format(filename))
-
-class Bounds: 
-    def __init__(self, lat1, lat2, lng1, lng2):
-        self.lat1 = lat1
-        self.lat2 = lat2 
-        self.lng1 = lng1
-        self.lng2 = lng2
+if __name__ == "__main__":
+    bds = Bounds(90, -90, -180, 180)
+    create_file(1, 1, 2020, bds)
