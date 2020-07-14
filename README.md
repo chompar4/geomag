@@ -7,7 +7,7 @@ Adapted from the geomagc software and World Magnetic Model of the NOAA
 Satellite and Information Service, National Geophysical Data Center
 http://www.ngdc.noaa.gov/geomag/WMM/DoDWMM.shtml
 
-<img src="assets/wmm-2015.png" width="800">
+Calculations forked from: [https://github.com/cmweiss/geomag/]
 
 ## Installation
 ```

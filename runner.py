@@ -72,22 +72,6 @@ if __name__ == "__main__":
 
         print("{} written".format(filename))
 
-
-def create_grib_cfgrib():
-
-    u = xr.DataArray(
-        np.zeros((181, 360)) + 300.,
-        coords=[
-            np.linspace(90., -90., 181),
-            np.linspace(0., 360., 360, endpoint=False),
-        ],
-        dims=['latitude', 'longitude'],
-    ).to_dataset(name='skin_temperature')
-
-    cfgrib.to_grib(u, 'out.grib')
-
-    import ipdb; ipdb.set_trace()
-
 class Bounds: 
     def __init__(self, lat1, lat2, lng1, lng2):
         self.lat1 = lat1
@@ -97,4 +81,3 @@ class Bounds:
 
 if __name__ == "__main__":
     create_json()
-    # create_grib_cfgrib()
