@@ -40,10 +40,10 @@ Magnetic field values:
 http GET :5002/ lat=-37.49 lng=144.58 altitude_km=0 day=14 mth=7 yr=2020
 ```
 
-Monthly iso-declination contour geojson:
+Monthly iso-declination contour geojson for the 1st of Jun:
 
 ```
-http GET :5002/contour mth=7 yr=2020
+http GET :5002/contour yr=2020
 ```
 
 ### Live

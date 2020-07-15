@@ -33,13 +33,12 @@ class GeomagField(Resource):
 class ContourData(Resource):
 
     schema_args = {
-        "yr": fields.Integer(required=True, validate=lambda y: 2020 <= y < 2025),
-        "mth": fields.Integer(required=True, validate=lambda m: 1 <= m <= 12)
+        "yr": fields.Integer(required=True, validate=lambda y: 2020 <= y < 2025)
     }
 
     @use_kwargs(schema_args, location="query")
-    def get(self, yr, mth):
-        plt_name = "contour-plots/1-{}-{}.json".format(mth, yr)
+    def get(self, yr):
+        plt_name = "contour-plots/1-6-{}.json".format(yr)
         with open(plt_name, "r") as plt:
             return str(plt.read())
 
