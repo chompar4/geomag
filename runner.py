@@ -46,7 +46,7 @@ def create_file(day, mth, yr, bds):
     )
     # plt.savefig('plot.png')
 
-    filename = "contour-plots/{}-{}-{}.json".format(day, mth, yr)
+    filename = "contour-plots/wmm-declination-contour-{}-{}-{}.json".format(day, mth, yr)
     geojson = geojsoncontour.contour_to_geojson(
         contour=cs,
         ndigits=3,
@@ -58,9 +58,8 @@ def create_file(day, mth, yr, bds):
 
 if __name__ == "__main__":
 
-    bounds = Bounds(90, -90, -180, 180)
+    bounds = Bounds(90, -89, -180, 180) 
 
-    # create one plot per month per year
-    for yr in np.linspace(start=2020, stop=2025, num=6):
-        for mth in np.linspace(start=1, stop=12, num=13):
-            create_file(day=1, mth=int(mth), yr=int(yr), bds=bounds)
+    # create one plot per year
+    for yr in np.linspace(start=2020, stop=2024, num=5):
+        create_file(day=1, mth=6, yr=int(yr), bds=bounds)
