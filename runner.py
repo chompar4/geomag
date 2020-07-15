@@ -6,7 +6,7 @@ import geojsoncontour
 import matplotlib.pyplot as plt
 import numpy as np
 
-from geomag import field
+from geomag import WorldMagneticModel
 
 
 class Bounds: 
@@ -16,20 +16,24 @@ class Bounds:
         self.lng1 = lng1
         self.lng2 = lng2
 
+wmm = WorldMagneticModel()
+def field(*args, **kwargs):
+    return wmm.calc_field(*args, **kwargs).field
 
-def create_file(day, mth, yr, bds): 
+def create_file(day, mth, yr, bds):
 
     date = datetime.date(year=yr, month=mth, day=day)
+    print('creating {}-{}-{}'.format(day, mth, yr))
 
-    nx = 360
-    ny = 181
+    nx = 1000
+    ny = 500
 
     x = np.linspace(start=bds.lat1, stop=bds.lat2, num=nx)
     y = np.linspace(start=bds.lng1, stop=bds.lng2, num=ny)
 
     lookup = [
         [
-            abs(field(dlat, dlng, date=date)["D"]) # need to abs() to avoid singularity at +-180
+            field(dlat, dlng, date=date)["D"]
             for dlng in y
         ]
         for dlat in x
@@ -38,11 +42,11 @@ def create_file(day, mth, yr, bds):
     z = np.array(lookup)
     cs = plt.contour(
         y, x, z,
-        levels=np.linspace(start=0, stop=180, num=180)
+        levels=np.linspace(start=-180, stop=180, num=361)
     )
-    plt.savefig('plot.png')
+    # plt.savefig('plot.png')
 
-    filename = "{}-{}-{}.json".format(day, mth, yr)
+    filename = "contour-plots/{}-{}-{}.json".format(day, mth, yr)
     geojson = geojsoncontour.contour_to_geojson(
         contour=cs,
         ndigits=3,
@@ -53,5 +57,11 @@ def create_file(day, mth, yr, bds):
     print("{} written".format(filename))
 
 if __name__ == "__main__":
-    bds = Bounds(90, -90, -180, 180)
-    create_file(1, 1, 2020, bds)
+
+    bounds = Bounds(90, -90, -180, 180)
+
+    # create one plot per month per year
+    for yr in np.linspace(start=2020, stop=2025, num=6):
+        for mth in np.linspace(start=1, stop=12, num=13):
+            create_file(day=1, mth=int(mth), yr=int(yr), bds=bounds)
+            break
