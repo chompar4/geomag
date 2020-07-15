@@ -1,7 +1,7 @@
 import datetime
-from json import dumps
+import json
 
-from flask import Flask, request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_restful import Api, Resource, abort
 from webargs import fields, validate
@@ -28,8 +28,23 @@ class GeomagField(Resource):
     def get(self, lat, lng, altitude_km, yr, mth, day):
         result = calculate_field(lat, lng, altitude_km, datetime.date(yr, mth, day))
         return result
-        
+    
+
+class ContourData(Resource):
+
+    schema_args = {
+        "yr": fields.Integer(required=True, validate=lambda y: 2020 <= y < 2025),
+        "mth": fields.Integer(required=True, validate=lambda m: 1 <= m <= 12)
+    }
+
+    @use_kwargs(schema_args, location="query")
+    def get(self, yr, mth):
+        plt_name = "contour-plots/1-{}-{}.json".format(mth, yr)
+        with open(plt_name, "r") as plt:
+            return str(plt.read())
+
 api.add_resource(GeomagField, '/')
+api.add_resource(ContourData, '/contour')
 
 @parser.error_handler
 def handle_request_parsing_error(err, req, schema, *, error_status_code, error_headers):

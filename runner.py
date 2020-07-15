@@ -64,4 +64,3 @@ if __name__ == "__main__":
     for yr in np.linspace(start=2020, stop=2025, num=6):
         for mth in np.linspace(start=1, stop=12, num=13):
             create_file(day=1, mth=int(mth), yr=int(yr), bds=bounds)
-            break
