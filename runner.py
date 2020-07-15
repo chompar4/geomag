@@ -2,11 +2,11 @@ import datetime
 import json
 from collections import defaultdict
 
-import geojsoncontour
 import matplotlib.pyplot as plt
 import numpy as np
 
 from geomag import WorldMagneticModel
+from utils import contour_to_geojson
 
 
 class Bounds: 
@@ -47,7 +47,7 @@ def create_file(day, mth, yr, bds):
     # plt.savefig('plot.png')
 
     filename = "contour-plots/wmm-declination-contour-{}-{}-{}.json".format(day, mth, yr)
-    geojson = geojsoncontour.contour_to_geojson(
+    geojson = contour_to_geojson(
         contour=cs,
         ndigits=3,
         unit='DD',

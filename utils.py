@@ -3,6 +3,14 @@ import math
 import operator
 from datetime import date
 
+import geojson
+import numpy as np
+from geojson import Feature, FeatureCollection, LineString, Polygon
+from geojsoncontour.utilities.multipoly import (MP, get_contourf_levels,
+                                                keep_high_angle,
+                                                set_contourf_properties)
+from matplotlib.colors import rgb2hex
+
 
 def square_array(n, default=0.0):
     return [[default] * n for _ in range(n)]
@@ -247,3 +255,47 @@ def _calc_scalar_potential(
 def _altitude_ratios(ref_radius, altitude_radius, n):
     a_over_r = ref_radius / altitude_radius
     return tuple(a_over_r ** (i + 2) for i in range(n))
+
+
+"""
+Based on https://github.com/bartromgens/geojsoncontour
+"""
+
+def contour_to_geojson(contour, geojson_filepath=None, min_angle_deg=None,
+                       ndigits=5, unit='', stroke_width=1, geojson_properties=None, strdump=False,
+                       serialize=True):
+    """Transform matplotlib.contour to geojson."""
+    collections = contour.collections
+    contour_index = 0
+    line_features = []
+    for collection in collections:
+        color = collection.get_edgecolor()
+        for path in collection.get_paths():
+            v = path.vertices
+            if len(v) < 3:
+                continue
+            coordinates = keep_high_angle(v, min_angle_deg) if min_angle_deg else v
+            coordinates = np.around(coordinates, ndigits) if ndigits is not None else coordinates
+            line = LineString(coordinates.tolist())
+            val = contour.levels[contour_index]
+            properties = {
+                "stroke-width": stroke_width,
+                "title": "%.2f" % val + ' ' + unit,
+                "level-value": float("%.6f" % val),
+                "level-index": contour_index, 
+                "level-display":  "{}{}".format(round(abs(val)),'°E' if val > 0 else '°W')
+            }
+            if geojson_properties:
+                properties.update(geojson_properties)
+            line_features.append(Feature(geometry=line, properties=properties))
+        contour_index += 1
+    feature_collection = FeatureCollection(line_features)
+    return _render_feature_collection(feature_collection, geojson_filepath, strdump, serialize)
+
+def _render_feature_collection(feature_collection, geojson_filepath, strdump, serialize):
+    if not serialize:
+        return feature_collection
+    if strdump or not geojson_filepath:
+        return geojson.dumps(feature_collection, sort_keys=True, separators=(',', ':'))
+    with open(geojson_filepath, 'w') as fileout:
+        geojson.dump(feature_collection, fileout, sort_keys=True, separators=(',', ':'))
