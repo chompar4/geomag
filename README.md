@@ -31,16 +31,17 @@ Magnetic field values:
 http GET :5002/ lat=-37.49 lng=144.58 altitude_km=0 day=14 mth=7 yr=2020
 ```
 
-Yearly iso-declination contour data (geojson) for the 1st of Jun:
+Yearly isogon files data (geojson) for the 1st of Jun:
 
 ```
-http GET :5002/contour yr=2020
+http GET :5002/isogon yr=2020
 ```
 
 ### Live
 
 ```
 http GET https://geomag-api.herokuapp.com/ lat=-37.49 lng=144.58 altitude_km=0 day=14 mth=7 yr=2020
+http GET https://geomag-api.herokuapp.com/isogon yr=2020
 ```
 ## Deployment 
 

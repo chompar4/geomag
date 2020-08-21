@@ -3,7 +3,7 @@ from distutils.core import setup, find_packages
 setup(
     name = 'geomag',
     package = ['geomag'],
-    packages=find_packages("geomag", exclude=["tests", "app", "contour-plots"])
+    packages=find_packages("geomag", exclude=["tests", "app", "isogons"])
     version = '1.0',
     description = 'earths magnetic field strength values and magnetic declination calculator',
     author = 'Sam Thompson',
