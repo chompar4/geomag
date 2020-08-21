@@ -1,13 +1,13 @@
 from distutils.core import setup, find_packages
 
 setup(
-    name = 'geomag',
-    package = ['geomag'],
-    packages=find_packages("geomag", exclude=["tests", "app", "isogons"])
+    name = 'isogonic-api',
+    package = ['isogonic-api'],
+    packages=find_packages("isogonic-api", exclude=["tests", "app", "isogons"])
     version = '1.0',
-    description = 'earths magnetic field strength values and magnetic declination calculator',
+    description = 'magnetic field strength values and declination calculator',
     author = 'Sam Thompson',
     author_email = 'chompar4@gmail.com',
-    url = 'https://github.com/chompar4/geomag_api',
-    download_url = 'https://github.com/chompar4/geomag_api',
+    url = 'https://github.com/chompar4/isogonic-api',
+    download_url = 'https://github.com/chompar4/isogonic-api',
 )

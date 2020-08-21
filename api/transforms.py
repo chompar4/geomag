@@ -1,6 +1,6 @@
 import math
 
-from geomag.constants import EE2, EQUATOR_RADIUS
+from api.constants import EE2, EQUATOR_RADIUS
 
 
 def normalise_decimal_degrees(value, norm_range):
