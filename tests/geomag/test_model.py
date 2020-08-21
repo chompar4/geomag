@@ -2,7 +2,7 @@ import math
 from datetime import date, timedelta
 
 import pytest
-from geomag import declination
+from api import declination
 
 known_vals = [
     (2020, 0, 0, 80, 0, 6570.4, -146.3, 54606.0, 6572.0, 55000.1, 83.14, -1.28),
