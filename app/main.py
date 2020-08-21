@@ -30,7 +30,7 @@ class GeomagField(Resource):
         return result
     
 
-class ContourData(Resource):
+class IsogonData(Resource):
 
     schema_args = {
         "yr": fields.Integer(required=True, validate=lambda y: 2020 <= y < 2025)
@@ -38,12 +38,12 @@ class ContourData(Resource):
 
     @use_kwargs(schema_args, location="query")
     def get(self, yr):
-        plt_name = "contour-plots/1-6-{}.json".format(yr)
+        plt_name = "isogons/1-6-{}.json".format(yr)
         with open(plt_name, "r") as plt:
             return str(plt.read())
 
 api.add_resource(GeomagField, '/')
-api.add_resource(ContourData, '/contour')
+api.add_resource(IsogonData, '/isogon')
 
 @parser.error_handler
 def handle_request_parsing_error(err, req, schema, *, error_status_code, error_headers):
