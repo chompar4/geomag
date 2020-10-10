@@ -461,7 +461,7 @@ pandas = ">=0.25"
 setuptools = ">=38.4"
 
 [metadata]
-content-hash = "114db62f93064b8fc7f03b8e2ee58e29b3f66459a45ec591fbf2672af2737677"
+content-hash = "9cf3f12949baae63e7ed8ff8f57529fb254c194ca7505a6167b2514f6605bb2f"
 python-versions = "3.8.2"
 
 [metadata.files]

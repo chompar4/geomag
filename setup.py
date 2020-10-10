@@ -1,9 +1,8 @@
-from distutils.core import setup, find_packages
+from distutils.core import setup
 
 setup(
     name = 'isogonic-api',
     package = ['isogonic-api'],
-    packages=find_packages("isogonic-api", exclude=["tests", "app", "isogons"]),
     version = '1.0',
     description = 'magnetic field strength values and declination calculator',
     author = 'Sam Thompson',
