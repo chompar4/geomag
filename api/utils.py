@@ -4,7 +4,6 @@ import operator
 from datetime import date
 
 import geojson
-import numpy as np
 from geojson import Feature, FeatureCollection, LineString, Polygon
 from geojsoncontour.utilities.multipoly import (MP, get_contourf_levels,
                                                 keep_high_angle,
