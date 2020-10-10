@@ -2,9 +2,9 @@ import math
 import os
 from datetime import date
 
-import api.constants as constants
-from api.transforms import geo_to_spherical, normalise_decimal_degrees
-from api.utils import (
+import geomag.constants as constants
+from geomag.transforms import geo_to_spherical, normalise_decimal_degrees
+from geomag.utils import (
     calculate_decimal_year,
     recursion_constants,
     scalar_potential,

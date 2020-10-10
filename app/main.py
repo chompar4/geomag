@@ -7,7 +7,7 @@ from flask_restful import Api, Resource, abort
 from webargs import fields, validate
 from webargs.flaskparser import parser, use_kwargs
 
-from api import field as calculate_field
+from geomag import field as calculate_field
 
 app = Flask(__name__)
 CORS(app)
