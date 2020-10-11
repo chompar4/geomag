@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name = 'geomag,
+    name = 'geomag',
     version = '7.0',
     description = 'magnetic field strength values and declination calculator',
     author = 'Sam Thompson',
