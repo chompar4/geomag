@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "geomag"
-version = "0.2.0"
+version = "0.6.0"
 description = ""
 authors = ["Sam Thompson <chompar4@gmail.com>"]
 
@@ -13,6 +13,7 @@ gunicorn = "^20.0.4"
 flask_cors = "^3.0.8"
 geojsoncontour = "^0.4.0"
 setuptools = "^50.3.0"
+geojson = "^2.5.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

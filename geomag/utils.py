@@ -3,13 +3,6 @@ import math
 import operator
 from datetime import date
 
-import geojson
-from geojson import Feature, FeatureCollection, LineString, Polygon
-from geojsoncontour.utilities.multipoly import (MP, get_contourf_levels,
-                                                keep_high_angle,
-                                                set_contourf_properties)
-from matplotlib.colors import rgb2hex
-
 
 def square_array(n, default=0.0):
     return [[default] * n for _ in range(n)]
@@ -264,6 +257,13 @@ def contour_to_geojson(contour, geojson_filepath=None, min_angle_deg=None,
                        ndigits=5, unit='', stroke_width=1, geojson_properties=None, strdump=False,
                        serialize=True):
     """Transform matplotlib.contour to geojson."""
+    import geojson
+    from geojson import Feature, FeatureCollection, LineString, Polygon
+    from geojsoncontour.utilities.multipoly import (MP, get_contourf_levels,
+                                                    keep_high_angle,
+                                                    set_contourf_properties)
+    from matplotlib.colors import rgb2hex
+
     collections = contour.collections
     contour_index = 0
     line_features = []
