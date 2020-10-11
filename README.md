@@ -1,4 +1,4 @@
-# isogonic-api
+# geomag
 api for declination and isogonic lines using the WMM20 spherical harmonics model.
 
 to see isogonic lines view the live map: [https://isogonic-map.herokuapp.com/]
