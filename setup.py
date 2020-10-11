@@ -1,9 +1,8 @@
-from distutils.core import setup
+import setuptools
 
-setup(
+setuptools.setup(
     name = 'isogonic-api',
-    package = ['isogonic-api'],
-    version = '1.0',
+    version = '4.0',
     description = 'magnetic field strength values and declination calculator',
     author = 'Sam Thompson',
     author_email = 'chompar4@gmail.com',
