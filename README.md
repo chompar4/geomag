@@ -1,4 +1,6 @@
 # geomag
+[![Build status](https://badge.buildkite.com/82cfc45a6dfec63cdf429b9e2b2037fe2416b3729d1db9aa94.svg)](https://buildkite.com/thompsonfilm/geomag)
+
 api for declination and isogonic lines using the WMM20 spherical harmonics model.
 
 to see isogonic lines view the live map: [https://isogonic-map.herokuapp.com/]

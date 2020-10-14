@@ -85,7 +85,8 @@ class WorldMagneticModel:
     def calc_field(self, lat, lng, alt=0, date=date.today()):
         """calc_field(self, dlat, dlng, alt=0, date=date.today())
 
-        Calculates the magnetic field for a given latitude and longitude in decimal degrees.
+        Calculates the magnetic field for a given latitude and longitude
+        in decimal degrees.
 
         **Parameters**
 
