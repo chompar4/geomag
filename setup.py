@@ -1,11 +1,16 @@
-import setuptools
+from setuptools import find_packages, setup
 
-setuptools.setup(
-    name = 'geomag',
-    version = '7.0',
-    description = 'magnetic field strength values and declination calculator',
-    author = 'Sam Thompson',
-    author_email = 'chompar4@gmail.com',
-    url = 'https://github.com/chompar4/geomag',
-    download_url = 'https://github.com/chompar4/geomag',
+AUTHOR = "Sam Thompson"
+EMAIL = "chompar4@gmail.com"
+
+requires = []
+setup(
+    name="geomag",
+    version="8.0",
+    author=AUTHOR,
+    author_email=EMAIL,
+    description="magnetic field strength values and declination calculator",
+    install_requires=requires,
+    packages=find_packages(),
+    include_package_data=True,
 )
