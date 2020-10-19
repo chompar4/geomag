@@ -31,5 +31,12 @@ heroku buildpacks:add heroku/python
 git push heroku master
 ```
 
+## Releases
+To create a release use the command
+```
+python setup.py sdist
+```
+
+
 ## Reference:
 See [https://www.ngdc.noaa.gov/geomag/WMM/]
