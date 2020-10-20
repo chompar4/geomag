@@ -1,1 +1,3 @@
-recursive-include geomag *.COF # can be extended with more extensions or file names. 
+recursive-include geomag *.COF
+recursive-include *.COF
+include *.COF

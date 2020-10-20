@@ -32,9 +32,9 @@ git push heroku master
 ```
 
 ## Releases
-To create a release use the command
+To create a release use the command. If it complains you will need to ```pip install wheel``` first. 
 ```
-python setup.py sdist
+python setup.py bdist_wheel
 ```
 
 
